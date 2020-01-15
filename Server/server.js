@@ -59,10 +59,16 @@ connection.query("INSERT INTO USERS (id,pw,name,description) VALUES('"+user_sign
 
 
 //jwt 토큰 코드
-app.get('/login', function(req, res) {
+app.get('/api', function(req, res) {
   res.json({
-    text: "login",
+    text: "my api!",
   })
+});
+
+app.get('/api/protected', function(req, res) {
+  res.json({
+    text: 'this is protected'
+  });
 });
 //jwt 토큰 코드
 
