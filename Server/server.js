@@ -22,17 +22,30 @@ var user_info = {
   'pw':'qwerz123',
 };
 //primary key 인 유저의 id가 디비에 존재하는지를 확인하는 코드
-connection.query("SELECT * FROM users where id = '"+user_info.id+"';", function(err, rows, fields) {
-    if (!err){
-      if (rows[0].id === user_info.id && rows[0].pw === user_info.pw) //아이디랑 비번이 일치하면 jwt 토큰을 줌
-        console.log('The solution is: ', rows[0].id);
-        console.log('로그인 완료');
-    }
-    else{
+app.post('/api/login', function(req, res){
+  connection.query("SELECT * FROM users where id = '"+user_info.id+"';", function(err, rows, fields) {
+    //token 코드 알려주는 코드 
+    //iat: issued at(토큰이 발급된 시간을 알려줌)
+    //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImpqbWluMzIxIiwicHciOiJxd2VyejEyMyIsImlhdCI6MTU3OTI0NDc1OX0.KjNOYhHhFy2be4tV8O5h3-_fpcm8GwiYHni2itdO5Ow
+  if (!err){
+    if (rows[0].id === user_info.id && rows[0].pw === user_info.pw) //아이디랑 비번이 일치하면 jwt 토큰을 줌
+    console.log('The solution is: ', rows[0].id); //id 출력
+    const user = {
+      "id":rows[0].id,
+      "pw":rows[0].pw
+    };
+    const token = jwt.sign( user , 'my_secret_key');
+    res.json({
+      token:token
+    })
+    console.log('로그인 완료');
+  }
+  else{
     console.log('Error while performing Query.', err);
     console.log('로그인 에러!');
-    }
-connection.end();
+  }
+  connection.end();
+});
 });
 
 //로그인 
@@ -66,15 +79,22 @@ app.get('/api', function(req, res) {
 });
 
 app.post('/api/login', function(req, res){
-  //auth user
-  const user = {id : 3};
-  const token = jwt.sign({ user }, 'my_secret_key');
+  //token 코드 알려주는 코드 
+  //iat: issued at(토큰이 발급된 시간을 알려줌)
+  //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImpqbWluMzIxIiwicHciOiJxd2VyejEyMyIsImlhdCI6MTU3OTI0NDc1OX0.KjNOYhHhFy2be4tV8O5h3-_fpcm8GwiYHni2itdO5Ow
+  const user = {
+    "id" : "jjmin321",
+    "pw" : "qwerz123"
+  };
+  const token = jwt.sign( user , 'my_secret_key');
   res.json({
     token:token
   })
 });
 
 app.get('/api/protected', ensureToken, function(req, res) {
+  //KEY : Authorization
+  //VALUE : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImpqbWluMzIxIiwicHciOiJxd2VyejEyMyIsImlhdCI6MTU3OTI0NDc1OX0.KjNOYhHhFy2be4tV8O5h3-_fpcm8GwiYHni2itdO5Ow
   //토큰 받았는지 확인
   jwt.verify(req.token, 'my_secret_key', function(err, data) {
   if (err) {
@@ -82,6 +102,7 @@ app.get('/api/protected', ensureToken, function(req, res) {
   } else {
     res.json({
       text: 'this is protected',
+      token: req.token,
       data: data
     }); 
   }
@@ -103,3 +124,4 @@ function ensureToken(req, res, next){
 
 // 실험을 위한 코드
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
