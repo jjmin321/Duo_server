@@ -17,12 +17,12 @@ var connection = mysql.createConnection({
     database : 'duo'
 });
 connection.connect();
-var user_info = {
-  'id':'jjmin321',
-  'pw':'qwerz123',
-};
 //primary key 인 유저의 id가 디비에 존재하는지를 확인하는 코드
-app.post('/api/login', function(req, res){
+app.get('/api/login', function(req, res){
+  var user_info = {
+    'id':'jjmin321',
+    'pw':'qwerz123',
+  };
   connection.query("SELECT * FROM users where id = '"+user_info.id+"';", function(err, rows, fields) {
     //token 코드 알려주는 코드 
     //iat: issued at(토큰이 발급된 시간을 알려줌)
@@ -35,6 +35,7 @@ app.post('/api/login', function(req, res){
       "pw":rows[0].pw
     };
     const token = jwt.sign( user , 'my_secret_key');
+    res.cookie("It's jwt!", token);
     res.json({
       token:token
     })
@@ -72,26 +73,6 @@ connection.query("INSERT INTO USERS (id,pw,name,description) VALUES('"+user_sign
 
 
 //jwt 토큰 코드
-app.get('/api', function(req, res) {
-  res.json({
-    text: "my api!",
-  })
-});
-
-app.post('/api/login', function(req, res){
-  //token 코드 알려주는 코드 
-  //iat: issued at(토큰이 발급된 시간을 알려줌)
-  //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImpqbWluMzIxIiwicHciOiJxd2VyejEyMyIsImlhdCI6MTU3OTI0NDc1OX0.KjNOYhHhFy2be4tV8O5h3-_fpcm8GwiYHni2itdO5Ow
-  const user = {
-    "id" : "jjmin321",
-    "pw" : "qwerz123"
-  };
-  const token = jwt.sign( user , 'my_secret_key');
-  res.json({
-    token:token
-  })
-});
-
 app.get('/api/protected', ensureToken, function(req, res) {
   //KEY : Authorization
   //VALUE : Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImpqbWluMzIxIiwicHciOiJxd2VyejEyMyIsImlhdCI6MTU3OTI0NDc1OX0.KjNOYhHhFy2be4tV8O5h3-_fpcm8GwiYHni2itdO5Ow
