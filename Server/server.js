@@ -18,14 +18,13 @@ var connection = mysql.createConnection({
 });
 connection.connect();
 //primary key 인 유저의 id가 디비에 존재하는지를 확인하는 코드
-app.get('/api/login', function(req, res){
+app.post('/api/login', function(req, res){
   var user_info = {
     id : req.query.id,  //아이디가 틀리니까 에러뜨고 서버 꺼짐
     pw : req.query.pw   //비밀번호가 틀려도 에러뜨고 서버 꺼짐
     // id:'jjmin321',
     // pw:'qwerz123',
   };
-  try{
     connection.query("SELECT * FROM users where id = '"+user_info.id+"' AND pw = '"+user_info.pw+"';", function(err, rows, fields) {
     //token 코드 알려주는 코드 
     //iat: issued at(토큰이 발급된 시간을 알려줌)
@@ -51,12 +50,8 @@ app.get('/api/login', function(req, res){
       console.log('로그인 에러!');
     }
   });
-}
-catch(err){
-  console.log("에러 떳어");
-}
-// connection.end();
 });
+// connection.end();
 
 //로그인 
 
