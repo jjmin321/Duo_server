@@ -20,33 +20,42 @@ connection.connect();
 //primary key 인 유저의 id가 디비에 존재하는지를 확인하는 코드
 app.get('/api/login', function(req, res){
   var user_info = {
-    'id':'jjmin321',
-    'pw':'qwerz123',
+    id : req.query.id,  //아이디가 틀리니까 에러뜨고 서버 꺼짐
+    pw : req.query.pw   //비밀번호가 틀려도 에러뜨고 서버 꺼짐
+    // id:'jjmin321',
+    // pw:'qwerz123',
   };
-  connection.query("SELECT * FROM users where id = '"+user_info.id+"';", function(err, rows, fields) {
+  try{
+    connection.query("SELECT * FROM users where id = '"+user_info.id+"' AND pw = '"+user_info.pw+"';", function(err, rows, fields) {
     //token 코드 알려주는 코드 
     //iat: issued at(토큰이 발급된 시간을 알려줌)
     //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImpqbWluMzIxIiwicHciOiJxd2VyejEyMyIsImlhdCI6MTU3OTI0NDc1OX0.KjNOYhHhFy2be4tV8O5h3-_fpcm8GwiYHni2itdO5Ow
-  if (!err){
-    if (rows[0].id === user_info.id && rows[0].pw === user_info.pw) //아이디랑 비번이 일치하면 jwt 토큰을 줌
-    console.log('The solution is: ', rows[0].id); //id 출력
-    const user = {
-      "id":rows[0].id,
-      "pw":rows[0].pw
-    };
-    const token = jwt.sign( user , 'my_secret_key');
-    res.cookie("It's jwt!", token);
-    res.json({
-      token:token
-    })
-    console.log('로그인 완료');
-  }
-  else{
-    console.log('Error while performing Query.', err);
-    console.log('로그인 에러!');
-  }
-  connection.end();
-});
+    if (!err){
+      if (rows[0].id === user_info.id && rows[0].pw === user_info.pw){ //아이디랑 비번이 일치하면 jwt 토큰을 줌
+        console.log('The solution is: ', rows[0].id); //id 출력
+        const user = {
+          id:rows[0].id,  // == "id":rows[0].id
+          pw:rows[0].pw
+        };
+        const token = jwt.sign( user , 'my_secret_key');
+        res.cookie("It's jwt!", token);
+        console.log("jwt used : ", token);
+        res.json({
+          token:token
+        })
+        console.log('로그인 완료');
+      }
+    }
+    else{
+      console.log('Error while performing Query.', err);
+      console.log('로그인 에러!');
+    }
+  });
+}
+catch(err){
+  console.log("에러 떳어");
+}
+// connection.end();
 });
 
 //로그인 
@@ -104,5 +113,7 @@ function ensureToken(req, res, next){
 //jwt 토큰 코드
 
 // 실험을 위한 코드
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => {
+  console.log(`Server is running at PORT ${port}!`)
+});
 
