@@ -17,8 +17,14 @@ var connection = mysql.createConnection({
     database : 'duo'
 });
 connection.connect();
+app.get('/Hi', function(req, res){
+  connection.query("SELECT * FROM USERS;", function(err, rows, fields) {
+    res.send(rows);
+  })
+})
+
 //primary key 인 유저의 id가 디비에 존재하는지를 확인하는 코드
-app.post('/api/login', function(req, res){
+app.get('/api/login', function(req, res){
   var user_info = {
     id : req.query.id,  //아이디가 틀리니까 에러뜨고 서버 꺼짐
     pw : req.query.pw   //비밀번호가 틀려도 에러뜨고 서버 꺼짐
