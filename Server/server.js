@@ -39,13 +39,22 @@ app.post('/api/login', function(req, res){
         const token = jwt.sign( user , 'my_secret_key');
         res.cookie("It's jwt!", token);
         console.log("jwt used : ", token);
-        res.json({
-          token:token
+        res.status(200).json({
+          token:token,
+          status : 200,
+          message : '로그인에 성공하였습니다.'
         })
         console.log('로그인 완료');
+        // res.status(200).json({ status : 200, message : '로그인에 성공하였습니다.' });
+      }else{
+        console.log("dddd");
       }
     }
     else{
+      res.status(400).json({
+        status : 400,
+        message : '아이디나 비밀번호가 잘못되었습니다.'
+      })
       console.log('Error while performing Query.', err);
       console.log('로그인 에러!');
     }
