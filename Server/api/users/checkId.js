@@ -16,9 +16,15 @@ exports.check = function(req, res){
   console.log(id);
   connection.query("SELECT * FROM USERS WHERE ID = '"+id+"';", function(err, rows, fields){
     if (rows[0] === undefined){
-      res.send("사용 가능한 아이디입니다");
+      res.status(200).json({
+        status : 200,
+        message : '사용 가능한 아이디입니다'
+      })
     }else{
-      res.send("이미 사용중인 아이디입니다");
+      res.status(400).json({
+        status : 400,
+        message : '이미 사용중인 아이디입니다'
+      })
     }
   })
 }
