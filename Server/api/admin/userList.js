@@ -13,8 +13,6 @@ connection.connect();
 exports.checkUserList = function(req, res) {
 connection.query("SELECT * FROM USERS;", function(err, rows, fields){
   res.status(200).json({
-    status: 200,
-    message : '회원 목록',
     users : rows
   })
 });
