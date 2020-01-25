@@ -2,8 +2,6 @@
 
 ## API
 
-
-
 ### @GET /api/admin/user-list
 - Request : X
 - Response : 유저 목록
