@@ -12,7 +12,7 @@ const connection = mysql.createConnection({
 connection.connect();
 
 //로그인
-exports.User = function(req, res){
+exports.user = function(req, res){
 const user_info = {
   id : req.query.id,  
   pw : req.query.pw   

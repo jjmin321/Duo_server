@@ -10,7 +10,7 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 //회원탈퇴
-exports.User = function(req, res) {
+exports.user = function(req, res) {
 currentUser_id = req.query.id
 if (currentUser_id !== 'jjmin321') {
   connection.query("DELETE FROM USERS WHERE id='"+currentUser_id+"';", function(err, rows, fields){

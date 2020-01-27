@@ -12,12 +12,12 @@ connection.connect();
 
 //비밀번호변경
 exports.pw = function(req, res){
-  const pw = {
-      now : req.query.now,
+  const user = {
+      id : req.query.id,
       want : req.query.want
   }
-  console.log(pw);
-  connection.query("UPDATE USERS SET pw = '"+pw.want+"' WHERE pw = '"+pw.now+"';", function(err, rows, fields){
+  console.log(user);
+  connection.query("UPDATE USERS SET pw = '"+user.want+"' WHERE id = '"+user.id+"';", function(err, rows, fields){
     if (!err){
         res.status(200).json({
             status : 200,
@@ -36,12 +36,12 @@ exports.pw = function(req, res){
 
 //이름 변경
 exports.name = function(req, res){
-    const name = {
-        now : req.query.now,
+    const user = {
+        id : req.query.id,
         want : req.query.want
     }
-    console.log(name);
-    connection.query("UPDATE USERS SET name = '"+name.want+"' WHERE name = '"+name.now+"';", function(err, rows, fields){
+    console.log(user);
+    connection.query("UPDATE USERS SET name = '"+user.want+"' WHERE id = '"+user.id+"';", function(err, rows, fields){
       if (!err){
           res.status(200).json({
               status : 200,
@@ -60,12 +60,12 @@ exports.name = function(req, res){
 
 //자기소개 변경
 exports.description = function(req, res){
-    const description = {
-        now : req.query.now,
+    const user = {
+        id : req.query.id,
         want : req.query.want
     }
-    console.log(description);
-    connection.query("UPDATE USERS SET description = '"+description.want+"' WHERE pw = '"+description.now+"';", function(err, rows, fields){
+    console.log(user);
+    connection.query("UPDATE USERS SET description = '"+user.want+"' WHERE id = '"+user.id+"';", function(err, rows, fields){
       if (!err){
           res.status(200).json({
               status : 200,

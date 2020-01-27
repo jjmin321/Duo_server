@@ -14,6 +14,9 @@
 - Request : id (query string)
 - Response : 사용 가능 여부
 
+### @GET /api/users/profile
+- Request : id (query string)
+- Response : 유저 프로필
 
 ### @POST /api/users/sign-in
 - Request : id, pw (query string)
