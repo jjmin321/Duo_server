@@ -17,7 +17,8 @@ exports.searchProfile = function(req, res) {
         if (rows[0] !== undefined){
             res.status(200).json({
                 status : 200,
-                user_profile : rows,
+                user_name : rows[0].name,
+                user_description : rows[0].description,
                 message : 'ok'
             })
         }else{
