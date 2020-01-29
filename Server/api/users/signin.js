@@ -1,5 +1,6 @@
 // /api/users/sign-in
 
+const current_time = require('../../../../library/current_time');
 const jwt = require('jsonwebtoken');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
@@ -13,6 +14,7 @@ connection.connect();
 
 //로그인
 exports.user = function(req, res){
+console.log('/api/users/sign-in', current_time.getDateTime());
 const user_info = {
   id : req.query.id,  
   pw : req.query.pw   

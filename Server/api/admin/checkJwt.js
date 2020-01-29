@@ -1,6 +1,7 @@
 // /api/admin/check-jwt
 
 const jwt = require('jsonwebtoken');
+const current_time = require('../../../../library/current_time');
 
 exports.ensureToken = function (req, res, next){
   const bearerHeader = req.headers["authorization"];
@@ -16,6 +17,7 @@ exports.ensureToken = function (req, res, next){
 
 //jwt 토큰 확인하는 코드
 exports.verifyToken = function(req, res) {
+console.log('/api/admin/check-jwt', current_time.getDateTime());
     jwt.verify(req.token, 'my_secret_key', function(err, data) {
     if (err) {
       res.sendStatus(403);

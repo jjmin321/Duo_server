@@ -1,5 +1,6 @@
 // /api/users/sign-up
 
+const current_time = require('../../../../library/current_time');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
   host : '127.0.0.1',
@@ -11,6 +12,7 @@ const connection = mysql.createConnection({
 connection.connect();
 //회원가입
 exports.addUser = function(req, res) {
+  console.log('/api/users/sign-up', current_time.getDateTime());
 var user_signup = {
   'id':req.query.id,
   'pw':req.query.pw,

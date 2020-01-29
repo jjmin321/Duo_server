@@ -1,5 +1,6 @@
 // /api/users/deleteUser
 
+const current_time = require('../../../../library/current_time');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
   host : '127.0.0.1',
@@ -11,6 +12,7 @@ const connection = mysql.createConnection({
 connection.connect();
 //회원탈퇴
 exports.user = function(req, res) {
+console.log('/api/users/deleteuser', current_time.getDateTime());
 currentUser_id = req.query.id
 if (currentUser_id !== 'jjmin321') {
   connection.query("DELETE FROM USERS WHERE id='"+currentUser_id+"';", function(err, rows, fields){

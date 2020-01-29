@@ -1,5 +1,6 @@
 // /api/users/alter
 
+const current_time = require('../../../../library/current_time');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
   host : '127.0.0.1',
@@ -12,6 +13,7 @@ connection.connect();
 
 //비밀번호변경
 exports.pw = function(req, res){
+console.log('/api/users/alter/pw', current_time.getDateTime())
   const user = {
       id : req.query.id,
       want : req.query.want
@@ -36,6 +38,7 @@ exports.pw = function(req, res){
 
 //이름 변경
 exports.name = function(req, res){
+    console.log('/api/users/alter/name')
     const user = {
         id : req.query.id,
         want : req.query.want
@@ -60,6 +63,7 @@ exports.name = function(req, res){
 
 //자기소개 변경
 exports.description = function(req, res){
+    console.log('/api/users/alter/description')
     const user = {
         id : req.query.id,
         want : req.query.want

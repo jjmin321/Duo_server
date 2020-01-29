@@ -1,5 +1,6 @@
 // /api/users/profile
 
+const current_time = require('../../../../library/current_time');
 const mysql = require('mysql');
 const connection = mysql.createConnection({
     host : '127.0.0.1',
@@ -12,6 +13,7 @@ connection.connect();
 
 //유저 프로필 정보
 exports.searchProfile = function(req, res) {
+    console.log('/api/users/profile', current_time.getDateTime())
     currentUser_id = req.query.id
     connection.query("SELECT * FROM USERS WHERE id='"+currentUser_id+"';", function(err, rows, fields){
         if (rows[0] !== undefined){
