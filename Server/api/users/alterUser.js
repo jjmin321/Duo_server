@@ -15,7 +15,8 @@ connection.connect();
 exports.pw = function(req, res){
 console.log('/api/users/alter/pw', current_time.getDateTime())
   const user = {
-      id : req.query.id,
+    //   id : req.query.id,
+        id : req.user,
       want : req.query.want
   }
   console.log(user);
@@ -40,7 +41,7 @@ console.log('/api/users/alter/pw', current_time.getDateTime())
 exports.name = function(req, res){
     console.log('/api/users/alter/name')
     const user = {
-        id : req.query.id,
+        id : req.user,
         want : req.query.want
     }
     console.log(user);
@@ -65,7 +66,7 @@ exports.name = function(req, res){
 exports.description = function(req, res){
     console.log('/api/users/alter/description')
     const user = {
-        id : req.query.id,
+        id : req.user,
         want : req.query.want
     }
     console.log(user);

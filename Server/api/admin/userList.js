@@ -12,11 +12,18 @@ const connection = mysql.createConnection({
 connection.connect();
 //회원 정보 데이터베이스 확인
 exports.checkUserList = function(req, res) {
-console.log('/api/admin/user-list', current_time.getDateTime());
-connection.query("SELECT * FROM USERS;", function(err, rows, fields){
-  res.status(200).json({
-    users : rows
-  })
-});
+  console.log('/api/admin/user-list', current_time.getDateTime());
+  if (req.user === 'jjmin321'){
+    connection.query("SELECT * FROM USERS;", function(err, rows, fields){
+      res.status(200).json({
+        users : rows
+      })
+    });
+  }else{
+    res.status(400).json({
+      status : 400,
+      message : '관리자 계정이 아닙니다'
+    })
+  }
 };
 //회원 정보 데이터베이스 확인 

@@ -15,7 +15,6 @@ connection.connect();
 exports.check = function(req, res){
   console.log('/api/users/check-id', current_time.getDateTime());
   const id = req.query.id;
-  console.log(id);
   connection.query("SELECT * FROM USERS WHERE ID = '"+id+"';", function(err, rows, fields){
     if (rows[0] === undefined){
       res.status(200).json({
