@@ -13,13 +13,12 @@ connection.connect();
 
 //비밀번호변경
 exports.pw = function(req, res){
-console.log('/api/users/alter/pw', current_time.getDateTime())
   const user = {
     //   id : req.query.id,
         id : req.user,
       want : req.query.want
   }
-  console.log(user);
+  console.log('/api/users/alter/pw', current_time.getDateTime(), user)
   connection.query("UPDATE USERS SET pw = '"+user.want+"' WHERE id = '"+user.id+"';", function(err, rows, fields){
     if (!err){
         res.status(200).json({
@@ -39,12 +38,11 @@ console.log('/api/users/alter/pw', current_time.getDateTime())
 
 //이름 변경
 exports.name = function(req, res){
-    console.log('/api/users/alter/name')
     const user = {
         id : req.user,
         want : req.query.want
     }
-    console.log(user);
+    console.log('/api/users/alter/name', current_time.getDateTime(), user)
     connection.query("UPDATE USERS SET name = '"+user.want+"' WHERE id = '"+user.id+"';", function(err, rows, fields){
       if (!err){
           res.status(200).json({
@@ -64,12 +62,11 @@ exports.name = function(req, res){
 
 //자기소개 변경
 exports.description = function(req, res){
-    console.log('/api/users/alter/description')
     const user = {
         id : req.user,
         want : req.query.want
     }
-    console.log(user);
+    console.log('/api/users/alter/description', current_time.getDateTime(), user)
     connection.query("UPDATE USERS SET description = '"+user.want+"' WHERE id = '"+user.id+"';", function(err, rows, fields){
       if (!err){
           res.status(200).json({

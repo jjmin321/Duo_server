@@ -13,9 +13,10 @@ connection.connect();
 
 //유저 프로필 정보
 exports.searchProfile = function(req, res) {
-    console.log('/api/users/profile', current_time.getDateTime())
-    currentUser_id = req.query.id
-    connection.query("SELECT * FROM USERS WHERE id='"+currentUser_id+"';", function(err, rows, fields){
+    console.log('/api/users/profile', current_time.getDateTime(), 'currentUser_id = ', req.user, 'search_id = ', req.query.id);
+    currentUser_id = req.user
+    search_id = req.query.id
+    connection.query("SELECT * FROM USERS WHERE id='"+search_id+"';", function(err, rows, fields){
         if (rows[0] !== undefined){
             res.status(200).json({
                 status : 200,

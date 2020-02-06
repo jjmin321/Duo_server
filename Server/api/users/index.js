@@ -6,12 +6,18 @@ const checkId = require('./checkId.js');
 const alterUser = require('./alterUser.js');
 const profile = require('./profile.js');
 const middlewareToken = require('../../middleware/auth')
+const image = require('./image.js')
+const multer = require('multer');
+const upload = multer({ dest : '../../../image/users_image/'})
 
 // /api/users/sign-in
 router.post('/sign-in', signIn.user);
 
 // /api/users/sign-up
 router.post('/sign-up', signUp.addUser);
+
+// /api/users/upload-profile
+router.post('/upload-profile', middlewareToken, upload.single('file'), image.uploadProfile);
 
 // /api/users/delete
 router.delete('/delete', middlewareToken, deleteUser.user)

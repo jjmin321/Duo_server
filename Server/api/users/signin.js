@@ -14,7 +14,6 @@ connection.connect();
 
 //로그인
 exports.user = function(req, res){
-console.log('/api/users/sign-in', current_time.getDateTime());
 const user_info = {
   id : req.query.id,  
   pw : req.query.pw   
@@ -30,7 +29,7 @@ connection.query("SELECT * FROM users where id = '"+user_info.id+"' AND pw = '"+
     description : rows[0].description,
     user_created : rows[0].user_created
   }
-  console.log('The solution is: ', rows[0].id); //id 출력
+  console.log('/api/users/sign-in', current_time.getDateTime(), 'User = ', profile);
   const token = jwt.sign( user_info , 'my_secret_key');
   res.cookie("It's jwt!", token);
   console.log("jwt used : ", token);

@@ -12,13 +12,13 @@ const connection = mysql.createConnection({
 connection.connect();
 //회원가입
 exports.addUser = function(req, res) {
-  console.log('/api/users/sign-up', current_time.getDateTime());
 var user_signup = {
   'id':req.query.id,
   'pw':req.query.pw,
   'name':req.query.name,
   'description':req.query.description
 };
+console.log('/api/users/sign-up', current_time.getDateTime(), user_signup);
 connection.query("INSERT INTO USERS (id,pw,name,description) VALUES('"+user_signup.id+"','"+user_signup.pw+"','"+user_signup.name+"','"+user_signup.description+"')", function(err, rows, fields) {
   if (!err){
     res.status(200).json({
