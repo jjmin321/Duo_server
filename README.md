@@ -12,7 +12,7 @@
 
 ### @GET /api/users/profile
 - Request : id (query string)
-- Response : 해당 아이디의 유저 프로필
+- Response : 해당 아이디의 유저 프로필, 프로필 사진이 있는 URL
 
 ### @POST /api/users/sign-in
 - Request : id, pw (query string)
@@ -21,6 +21,10 @@
 ### @POST /api/users/sign-up
 - Request : id, pw, name, description (query string)
 - Response : 회원가입 성공 여부
+
+### @POST /api/users/upload-profile
+- Request : headers[key : authorization, value : Bearer (JSONWEBTOKEN)], form-data[key : users_image, value : file]
+- Response : 프로필 사진 업로드 성공 여부
 
 ### @PUT/api/users/alter/pw
 - Request : want (query string) + headers[key : authorization, value : Bearer (JSONWEBTOKEN)]

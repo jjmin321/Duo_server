@@ -79,22 +79,26 @@ exports.uploadProfile = function (req, res)  {
 //   }
 // };
 
-exports.getProfileUrl = async (req, userId) => {
-  currentUser_id = req.user;
-  let { profile_pic: profilePic } = user;
-
-  if (!fs.existsSync(path.join(__dirname, `../../public/image/${profilePic}`))) {
-    profilePic = null;
+exports.getProfileUrl = function (user_id) {
+connection.query(`SELECT image FROM users WHERE id = '${user_id}';`, function(err, rows, fields){
+  image = rows[0].image
+  try{
+  if (!fs.existsSync(path.join(__dirname, `../../../image/users_image/${image}`))) {
+    image = null;
   }
-
-  let profileUrl;
-  if (!profilePic) {
-    profileUrl = `${req.origin}/static/image/${imageInfo.basic_profile}`;
+  if (!image) {
+    profileUrl = `/static/users_image/jjmin321_1581074532803_rest.png`;
   } else {
-    profileUrl = `${req.origin}/static/image/${profilePic}`;
+    profileUrl = `/static/image/${image}`;
   }
-
+  console.log("profileUrl = ", profileUrl, current_time.getDateTime())
   return profileUrl;
+  }
+  catch(err){
+    console.log(err)
+    return null;
+  }
+})
 };
 
 // exports.getThumbnailUrl = async (req, channelId) => {

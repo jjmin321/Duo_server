@@ -2,6 +2,7 @@
 
 const current_time = require('../../../../library/current_time');
 const mysql = require('mysql');
+const image = require('./image.js')
 const connection = mysql.createConnection({
     host : '127.0.0.1',
     user : 'root',
@@ -9,6 +10,7 @@ const connection = mysql.createConnection({
     port : '3306',
     database : 'duo'
 });
+const child_process = require("child_process");
 connection.connect();
 
 //유저 프로필 정보
@@ -16,13 +18,15 @@ exports.searchProfile = function(req, res) {
     console.log('/api/users/profile', current_time.getDateTime(), 'currentUser_id = ', req.user, 'search_id = ', req.query.id);
     currentUser_id = req.user
     search_id = req.query.id
+    profileUrl = image.getProfileUrl(search_id)
+    child_process.execSync("sleep 0.1");
     connection.query("SELECT * FROM USERS WHERE id='"+search_id+"';", function(err, rows, fields){
         if (rows[0] !== undefined){
-            res.status(200).json({
+           res.status(200).json({
                 status : 200,
                 user_name : rows[0].name,
                 user_description : rows[0].description,
-                image : rows[0].image,
+                image : profileUrl,
                 message : 'ok'
             })
         }else{

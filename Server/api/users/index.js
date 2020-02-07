@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
       cb(null, 'image/users_image/');
     },
     filename: function (req, file, cb) {
-      cb(null, `${file.fieldname}_${Date.now()}_${file.originalname}`);
+      cb(null, `${req.user}_${Date.now()}_${file.originalname}`);
     },
 });
 
@@ -45,6 +45,6 @@ router.put('/alter/name', middlewareToken, alterUser.name);
 router.put('/alter/description', middlewareToken, alterUser.description);
 
 // /api/users/profile
-router.get('/profile', profile.searchProfile);
+router.get('/profile', middlewareToken, profile.searchProfile);
 
 module.exports = router;
