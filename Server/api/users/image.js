@@ -16,7 +16,7 @@ connection.connect();
 exports.uploadProfile = function (req, res)  {
   console.log('/api/users/uploadProfile', current_time.getDateTime(), 'currentUser_id = ', req.user);
   currentUser_id = req.user;  
-  console.log(req.file)
+  console.log(req.file, current_time.getDateTime())
   if (!req.file) {
     console.log('검증 오류입니다');
     return res.status(400).json({
@@ -24,19 +24,20 @@ exports.uploadProfile = function (req, res)  {
       message: '검증 오류입니다.',
     });
   } 
-  try {
-    // connection.query("")
-    return res.status(200).json({
-      status: 200,
-      message: '프로필 사진 업로드에 성공하였습니다.',
-    });
-  } catch (err) {
-    colorConsole.red(err.message);
-    return res.status(500).json({
-      status: 500,
-      message: '프로필 사진 업로드에 실패하였습니다.',
-    });
-  }
+  connection.query(`UPDATE USERS SET image = '${req.file.filename}' WHERE id = '${currentUser_id}';`, function(err, rows, fields){
+    try {
+      return res.status(200).json({
+        status: 200,
+        message: '프로필 사진 업로드에 성공하였습니다.',
+      });
+    } catch (err) {
+      console.log(err.message)
+      return res.status(500).json({
+        status: 500,
+        message: '프로필 사진 업로드에 실패하였습니다.',
+      });
+    }
+  })
 };
 
 // exports.uploadThumbnail = async (req, res) => {
@@ -78,23 +79,23 @@ exports.uploadProfile = function (req, res)  {
 //   }
 // };
 
-// exports.getProfileUrl = async (req, userId) => {
-//   const user = await models.User.getUser(userId);
-//   let { profile_pic: profilePic } = user;
+exports.getProfileUrl = async (req, userId) => {
+  currentUser_id = req.user;
+  let { profile_pic: profilePic } = user;
 
-//   if (!fs.existsSync(path.join(__dirname, `../../public/image/${profilePic}`))) {
-//     profilePic = null;
-//   }
+  if (!fs.existsSync(path.join(__dirname, `../../public/image/${profilePic}`))) {
+    profilePic = null;
+  }
 
-//   let profileUrl;
-//   if (!profilePic) {
-//     profileUrl = `${req.origin}/static/image/${imageInfo.basic_profile}`;
-//   } else {
-//     profileUrl = `${req.origin}/static/image/${profilePic}`;
-//   }
+  let profileUrl;
+  if (!profilePic) {
+    profileUrl = `${req.origin}/static/image/${imageInfo.basic_profile}`;
+  } else {
+    profileUrl = `${req.origin}/static/image/${profilePic}`;
+  }
 
-//   return profileUrl;
-// };
+  return profileUrl;
+};
 
 // exports.getThumbnailUrl = async (req, channelId) => {
 //   let { thumbnail } = await models.Channel.getChannel(channelId);

@@ -22,6 +22,7 @@ exports.searchProfile = function(req, res) {
                 status : 200,
                 user_name : rows[0].name,
                 user_description : rows[0].description,
+                image : rows[0].image,
                 message : 'ok'
             })
         }else{
