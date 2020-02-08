@@ -11,7 +11,7 @@
 - Response : 해당 아이디의 사용 가능 여부
 
 ### @GET /api/users/profile
-- Request : id (query string)
+- Request : headers[key : authorization, value : Bearer (JSONWEBTOKEN)], id[검색할 유저의 아이디](query string)
 - Response : 해당 아이디의 유저 프로필, 프로필 사진이 있는 URL
 
 ### @POST /api/users/sign-in
