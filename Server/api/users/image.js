@@ -89,7 +89,7 @@ connection.query(`SELECT image FROM users WHERE id = '${user_id}';`, function(er
   if (!image) {
     profileUrl = `/static/users_image/jjmin321_1581074532803_rest.png`;
   } else {
-    profileUrl = `/static/image/${image}`;
+    profileUrl = `/static/users_image/${image}`;
   }
   console.log("profileUrl = ", profileUrl, current_time.getDateTime())
   return profileUrl;
