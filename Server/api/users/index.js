@@ -10,6 +10,7 @@ const image = require('./image.js');
 const multer = require('multer');
 
 const storage = multer.diskStorage({
+  //파일 저장경로, 파일이름설정
     destination: function (req, file, cb) {
       cb(null, 'image/users_image/');
     },

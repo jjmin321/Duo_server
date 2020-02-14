@@ -4,7 +4,7 @@ const router = require('express').Router();
 router.use('/admin', require('./admin'));
 
 // /api/posts
-// router.use('/posts', require('./posts'));
+router.use('/posts', require('./posts'));
 
 // /api/users
 router.use('/users', require('./users'));
