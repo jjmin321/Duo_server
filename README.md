@@ -26,6 +26,10 @@
 - Request : headers[key : authorization, value : Bearer (JSONWEBTOKEN)], form-data[key : users_image, value : file]
 - Response : 프로필 사진 업로드 성공 여부
 
+### @POST /api/posts/addpost
+- Request : headers[key: authrization, value : Bearer (JSONWEBTOKEN)], title(query string), description(query string)
+- Response : 게시물 등록 성공 여부
+
 ### @PUT/api/users/alter/pw
 - Request : want (query string) + headers[key : authorization, value : Bearer (JSONWEBTOKEN)]
 - Response : 비밀번호 변경 성공 여부
