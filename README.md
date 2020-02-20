@@ -16,7 +16,7 @@
 
 ### @POST /api/users/sign-in
 - Request : id, pw (query string)
-- Response : 해당 유저 정보에 맞는 JSON WEB TOKEN
+- Response : 해당 유저 정보에 맞는 JSON WEB TOKEN, 유저 데이터
 
 ### @POST /api/users/sign-up
 - Request : id, pw, name, description (query string)
