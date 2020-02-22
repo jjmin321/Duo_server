@@ -11,11 +11,15 @@ const storage = multer.diskStorage({
       filename: function (req, file, cb) {
         cb(null, `${req.user}_${Date.now()}_${file.originalname}`);
       },
+      limits : {
+        files : 3,
+        filesize : 1024 * 1024 * 1024,
+      }
   });
   
   const upload = multer({ storage : storage })
 
 // /api/posts/addpost
-router.post('/addpost', middlewareToken, addPost);
+router.post('/addpost', middlewareToken, upload.array('posts_image', 3), addPost);
 
 module.exports = router;
