@@ -1,5 +1,8 @@
 # Duo 
 
+users api는 모두 만듦
+posts api 중 사진 여러장 업로드 해야 함.
+
 ## API
 
 ### @GET /api/admin/user-list
