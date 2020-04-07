@@ -1,5 +1,15 @@
+<div align="center">
+  
+![GitHub contributors](https://img.shields.io/github/contributors/jjmin321/Duo_server)
+![GitHub forks](https://img.shields.io/github/forks/jjmin321/Duo_server?label=Forks)
+![GitHub stars](https://img.shields.io/github/stars/jjmin321/Duo_server?style=Stars)
+![GitHub issues](https://img.shields.io/github/issues-raw/jjmin321/MaskInfo_api)
+[![Go Report Card](https://goreportcard.com/badge/github.com/jjmin321/Duo_server)](https://goreportcard.com/badge/github.com/jjmin321/Duo_server)
+
+</div>
+
 # Duo 
-💠 1학년 겨울방학으로 NodeJS의 이해도를 높이기 위해서 개발한 인스타그램스러운(?) 앱을 만든 프로젝트입니다.
+💠 1학년 겨울방학으로 NodeJS와 REST API의 이해도를 높이기 위해서 개발한 SNS의 프로필을 제작하고 볼 수 있는 프로젝트입니다.
 - 🙋‍♂️안드로이드 : 대구소프트웨어고등학교 1학년 박진 - Kotlin (https://github.com/flaw5886)
 - 🙋‍♂️서버 : 대구소프트웨어고등학교 1학년 제정민 - NodeJS (https://github.com/jjmin321)
 
