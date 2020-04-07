@@ -4,7 +4,6 @@
 ![GitHub forks](https://img.shields.io/github/forks/jjmin321/Duo_server?label=Forks)
 ![GitHub stars](https://img.shields.io/github/stars/jjmin321/Duo_server?style=Stars)
 ![GitHub issues](https://img.shields.io/github/issues-raw/jjmin321/MaskInfo_api)
-[![Go Report Card](https://goreportcard.com/badge/github.com/jjmin321/Duo_server)](https://goreportcard.com/report/github.com/jjmin321/Duo_server)
 
 </div>
 
