@@ -1,16 +1,17 @@
-<div align="center">
-  
-![GitHub contributors](https://img.shields.io/github/contributors/jjmin321/Duo_server)
-![GitHub forks](https://img.shields.io/github/forks/jjmin321/Duo_server?label=Forks)
-![GitHub stars](https://img.shields.io/github/stars/jjmin321/Duo_server?style=Stars)
-![GitHub issues](https://img.shields.io/github/issues-raw/jjmin321/MaskInfo_api)
-
-</div>
-
 # Duo 
 💠 1학년 겨울방학으로 백엔드의 이해도를 높이기 위해서 개발하게 된 정말 간단한 REST API만으로 제작한 SNS의 프로필을 제작하고 볼 수 있는 프로젝트입니다.
 - 🙋‍♂️안드로이드 : 대구소프트웨어고등학교 1학년 박진 - Kotlin (https://github.com/flaw5886)
 - 🙋‍♂️서버 : 대구소프트웨어고등학교 1학년 제정민 - NodeJS (https://github.com/jjmin321)
+
+- 운영체제 
+
+- 개발 스택
+  - NodeJS 12.18.3
+  - Express framework
+  - MySQL
+
+- 개발 도구
+  - Visual studio Code
 
 ## UI/UX
 <div>
