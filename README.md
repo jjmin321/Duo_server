@@ -1,18 +1,18 @@
-# Duo 
-💠 1학년 겨울방학으로 백엔드의 이해도를 높이기 위해서 개발하게 된 정말 간단한 REST API만으로 제작한 SNS의 프로필을 제작하고 볼 수 있는 프로젝트입니다.<br>
-🙋‍♂️안드로이드 : 대구소프트웨어고등학교 1학년 박진 - Kotlin (https://github.com/flaw5886)<br>
-🙋‍♂️서버 : 대구소프트웨어고등학교 1학년 제정민 - NodeJS (https://github.com/jjmin321)<br>
+# Duo 듀오
+> 📱 간단하게 자신만의 프로필을 생성하고 다른 사람들과 공유할 수 있는 프로젝트입니다<br>
+> 📖 NodeJS 공부 및 REST API 지식을 넓히기 위해 시작하게 되었습니다
 
-- 운영체제 
-  - Mac Os Mojave
+# Function 
+- 사용을 위한 로그인 및 회원가입 기능 
+- 회원 정보 수정 및 탈퇴 기능 
+- 이미지를 등록하고 다른 사람의 프로필을 볼 수 있는 기능
 
-- 개발 스택
-  - NodeJS 12.18.3
-  - Express framework
-  - MySQL
-
-- 개발 도구
-  - Visual studio Code
+## Stack
+|                      | Android     | Server        | 
+|:--------------------:|:---------------:|:------------------:|
+| Developer | 박진 | 제정민       | 
+| Develop Language | Kotlin| Node.Js| 
+| Develop Tool     | Android Studio  | Visual Studio Code | 
 
 ## UI/UX
 <div>
@@ -30,49 +30,3 @@
 <img width="160" src="https://user-images.githubusercontent.com/52072077/76144482-4377c280-60c4-11ea-879e-7f60b7309798.jpg"></img>
 <img width="160" src="https://user-images.githubusercontent.com/52072077/76144484-44105900-60c4-11ea-86d5-4bf2a501d46b.jpg"></img>
 </div>
-
-## API - FUNCTION
-
-### @GET /api/admin/user-list
-- Request : headers[key : authorization, value : Bearer (JSONWEBTOKEN)]
-- Response : 유저 목록
-
-### @GET /api/users/check-id
-- Request : id (query string)
-- Response : 해당 아이디의 사용 가능 여부
-
-### @GET /api/users/profile
-- Request : headers[key : authorization, value : Bearer (JSONWEBTOKEN)], id[검색할 유저의 아이디](query string)
-- Response : 해당 아이디의 유저 프로필, 프로필 사진이 있는 URL
-
-### @POST /api/users/sign-in
-- Request : id, pw (query string)
-- Response : 해당 유저 정보에 맞는 JSON WEB TOKEN, 유저 데이터
-
-### @POST /api/users/sign-up
-- Request : id, pw, name, description (query string)
-- Response : 회원가입 성공 여부
-
-### @POST /api/users/upload-profile
-- Request : headers[key : authorization, value : Bearer (JSONWEBTOKEN)], form-data[key : users_image, value : file]
-- Response : 프로필 사진 업로드 성공 여부
-
-### @POST /api/posts/addpost
-- Request : headers[key: authrization, value : Bearer (JSONWEBTOKEN)], title(query string), description(query string)
-- Response : 게시물 등록 성공 여부
-
-### @PUT/api/users/alter/pw
-- Request : want (query string) + headers[key : authorization, value : Bearer (JSONWEBTOKEN)]
-- Response : 비밀번호 변경 성공 여부
-
-### @PUT/api/users/alter/name
-- Request : want (query string) + headers[key : authorization, value : Bearer (JSONWEBTOKEN)]
-- Response : 이름 변경 성공 여부
-
-### @PUT/api/users/alter/description
-- Request : want (query string) + headers[key : authorization, value : Bearer (JSONWEBTOKEN)]
-- Response : 자기소개 변경 성공 여부
-
-### @DELETE /api/users/delete
-- Request : headers[key : authorization, value : Bearer (JSONWEBTOKEN)]
-- Response : 회원탈퇴 성공 여부
