@@ -11,7 +11,7 @@
 |                      | Android     | Server        | 
 |:--------------------:|:---------------:|:------------------:|
 | Developer | 박진 | 제정민       | 
-| Develop Language | Kotlin| Node.Js| 
+| Develop Language | Kotlin| NodeJs| 
 | Develop Tool     | Android Studio  | Visual Studio Code | 
 
 ## UI/UX
